@@ -4,7 +4,8 @@ var seconds_count = 10;
 var correct_answers = 0;
 var incorrect_answers = 0;
 var unanswered =  0;
-
+var $start_game_button = $("<button id='start_game'>").text("Start");
+var $end_game_button = $("<button id='end_game'>").text("Done");
 
 
 function display_questions() {
@@ -21,29 +22,26 @@ function display_stats(){
 }
 
 function run_timer() {
+    $("#sub_heading").html("<h2> Time Remaining: " + seconds_count + " seconds</h2>");
     clearInterval(interval_id);
     interval_id = setInterval(decrement, 1000);
 }
 
 function decrement() {
-    $("#sub_heading").html("<h2> Time Remaining: " + seconds_count + " seconds</h2>");
+    $("#sub_heading").html("<h2> Time Remaining: " + --seconds_count + " seconds</h2>");
 
-    if (seconds_count-- <= 0) {
+    if (seconds_count <= 0) {
         clearInterval(interval_id);
         display_stats(); 
     }
 }
 
-var $start_game_button = $("<button id='start_game'>").text("Start");
 $("#sub_heading").append($start_game_button);
 
-var $end_game_button = $("<button id='end_game'>").text("Done");
 
 $("#start_game").on("click", function () {
     run_timer();
-    $("#sub_heading").empty();
     display_questions();
-    var $end_game_button = $("<button id='end_game'>").text("Done");
     $("#done_button").append($end_game_button);
 });
 
@@ -54,6 +52,7 @@ $("#done_button").on("click", "#end_game", function () {
 
 
 
+// $("#sub_heading").empty();
 
 // var letterBtn = $("<button>");
 
