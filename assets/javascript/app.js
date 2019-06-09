@@ -3,22 +3,41 @@ var interval_id;
 var seconds_count = 10;
 var correct_answers = 0;
 var incorrect_answers = 0;
-var unanswered =  0;
+var unanswered = 0;
 var $start_game_button = $("<button id='start_game'>").text("Start");
 var $end_game_button = $("<button id='end_game'>").text("Done");
 
+var questions = [
+    {
+        question: "What is the fastest event?",
+        correct: "downhill",
+        answers:  ["downhill", "super-g", "giant slalom", "slalom"]
+    },
+    {
+        question: "Where is the Hannenkam?",
+        correct: "Austria",
+        answers: ["France", "Italy", "Austria", "Croatia"]
+    },
+    {
+        question: "What is the name of the championship trophy?",
+        correct: "Crystal Globe",
+        answers: ["Peaks Honor", "Snow Cup", "Stenmark Prize", "Crystal Globe"]
+    }
+];
 
 function display_questions() {
-   
+    questions.forEach(function(item){
+        $("#main_content").append("<p>" + item.question + "</p>");
+
+    })
 }
 
-function display_stats(){
-    $("#sub_heading").html("<h3>Done!<br></h3>");
-    $("#sub_heading").append("<h3>Correct answers: " + correct_answers + "<br></h3>");
-    $("#sub_heading").append("<h3>Incorrect answers: " + incorrect_answers + "<br></h3>");
-    $("#sub_heading").append("<h3>Unanswered: " + unanswered + "<br></h3>");
+function display_stats() {
+    $("#sub_heading").html("<h3>Done!</h3>");
+    $("#main_content").html("<h3>Correct answers: " + correct_answers + "<br></h3>");
+    $("#main_content").append("<h3>Incorrect answers: " + incorrect_answers + "<br></h3>");
+    $("#main_content").append("<h3>Unanswered: " + unanswered + "</h3>");
     $("#done_button").empty();
-
 }
 
 function run_timer() {
@@ -32,12 +51,11 @@ function decrement() {
 
     if (seconds_count <= 0) {
         clearInterval(interval_id);
-        display_stats(); 
+        display_stats();
     }
 }
 
 $("#sub_heading").append($start_game_button);
-
 
 $("#start_game").on("click", function () {
     run_timer();
@@ -47,7 +65,7 @@ $("#start_game").on("click", function () {
 
 $("#done_button").on("click", "#end_game", function () {
     clearInterval(interval_id);
-    display_stats(); 
+    display_stats();
 });
 
 

@@ -22,18 +22,34 @@ body{
     background-color: rgb(194, 48, 48);
     font-size: 30px;
     font-style: bold;
-    margin: 10px 0 0 400px;
+    margin: 10px 0 0 60px;
 }
+
+#end_game{
+    width: 75px;
+    height: 35px;
+    border-radius: 8px;
+    color: blue;
+    background-color: rgb(194, 48, 48);
+    font-size: 20px;
+    font-style: bold;
+    margin: 10px 0 0 60px;
+}
+
+
+#main_content, #sub_heading, #done_button{
+    padding-left: 300px;
+} 
 
 h1 {
     padding-left: 215px;
 } 
 
-h2 {
+/* h2 {
     padding-left: 300px;
-} 
+}  */
 
 h3 {
-    padding-left: 400px;
+    padding-left: 50px;
 } 
 
