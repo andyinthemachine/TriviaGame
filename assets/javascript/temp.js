@@ -1,6 +1,6 @@
 
 var interval_id;
-var seconds_count = 10;
+var seconds_count = 5;
 var correct_answers = 0;
 var incorrect_answers = 0;
 var unanswered =  0;
@@ -16,7 +16,6 @@ function display_stats(){
     $("#sub_heading").append("<h3>Correct answers: " + correct_answers + "<br></h3>");
     $("#sub_heading").append("<h3>Incorrect answers: " + incorrect_answers + "<br></h3>");
     $("#sub_heading").append("<h3>Unanswered: " + unanswered + "<br></h3>");
-    $("#done_button").empty();
 
 }
 
@@ -34,23 +33,40 @@ function decrement() {
     }
 }
 
-var $start_game_button = $("<button id='start_game'>").text("Start");
-$("#sub_heading").append($start_game_button);
 
-var $end_game_button = $("<button id='end_game'>").text("Done");
 
 $("#start_game").on("click", function () {
-    run_timer();
-    $("#sub_heading").empty();
-    display_questions();
     var $end_game_button = $("<button id='end_game'>").text("Done");
     $("#done_button").append($end_game_button);
+    display_questions();
+    run_timer();    
 });
 
-$("#done_button").on("click", "#end_game", function () {
+//onclick radio button{
+
+    //get question
+    //clear old choice turn new choice on
+
+    //}
+
+$("#end_game").on("click", function () {
     clearInterval(interval_id);
     display_stats(); 
 });
+
+var $start_game_button = $("<button id='start_game'>").text("Start");
+$("#sub_heading").append($start_game_button);
+
+ // $("#sub_heading").empty();
+
+//   <h3>Correct Answers: <span id="wins"></span></h3>
+//   <h3>Losses: <span id="losses"></span></h3>
+//   <h3>Your total so far: <span id="running_total"></span></h3> 
+
+//onclick done button{
+//     clear_questions();
+//     display_stats();
+// }
 
 
 
@@ -81,7 +97,8 @@ $("#done_button").on("click", "#end_game", function () {
 //     }
 //   }
 
-
+//   reset_game();
+//   update_display();
 
   // on-click event for button clicks of crystal images
 //   $("button").on("click", function () {
