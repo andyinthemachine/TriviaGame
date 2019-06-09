@@ -1,8 +1,22 @@
 
 var interval_id;
-var seconds_count = 10;
+var seconds_count = 5;
+var correct_answers = 0;
+var incorrect_answers = 0;
+var unanswered =  0;
+
+
 
 function display_questions() {
+   
+}
+
+function display_stats(){
+    $("#sub_heading").html("<h3>Done!<br></h3>");
+    $("#sub_heading").append("<h3>Correct answers: " + correct_answers + "<br></h3>");
+    $("#sub_heading").append("<h3>Incorrect answers: " + incorrect_answers + "<br></h3>");
+    $("#sub_heading").append("<h3>Unanswered: " + unanswered + "<br></h3>");
+
 }
 
 function run_timer() {
@@ -11,20 +25,18 @@ function run_timer() {
 }
 
 function decrement() {
-    // $("#show-number").text("<h2>" + number + "</h2>");
-    $("#sub_heading").html("<h2> Time Remaining: " + --seconds_count + "seconds</h2>");
+    $("#sub_heading").html("<h2> Time Remaining: " + seconds_count + " seconds</h2>");
 
-    if (number === 0) {
+    if (seconds_count-- <= 0) {
         clearInterval(interval_id);
-        alert("Times up");
+        display_stats(); 
     }
 }
+
 var $start_game_button = $("<button id='start_game'>").text("Start");
 $("#sub_heading").append($start_game_button);
 
-
 $("#start_game").on("click", function () {
-    $("#sub_heading").empty();
     display_questions();
     run_timer();
 
@@ -37,7 +49,11 @@ $("#start_game").on("click", function () {
 
 });
 
+ // $("#sub_heading").empty();
 
+//   <h3>Correct Answers: <span id="wins"></span></h3>
+//   <h3>Losses: <span id="losses"></span></h3>
+//   <h3>Your total so far: <span id="running_total"></span></h3> 
 
 //onclick done button{
 //     clear_questions();
