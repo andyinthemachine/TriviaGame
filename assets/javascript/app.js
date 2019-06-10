@@ -1,6 +1,6 @@
 
 var interval_id;
-var seconds_count = 45;
+var seconds_count = 35;
 var correct_answers = 0;
 var incorrect_answers = 0;
 var unanswered = 0;
@@ -54,10 +54,11 @@ function display_questions() {
             var $radio_button = $("<input type = 'radio' />");
             $radio_button.attr({
                     name: "question_" + i,
+                    id: "ans_" + i,
                     value: questions[i].answers[j]
             });
             $("#main_content").append($radio_button);
-            $("#main_content").append("<label>" + questions[i].answers[j] + "</label>");
+            $("#main_content").append("<label for = 'ans_" + i + "'>" + questions[i].answers[j] + "</label>");
             $("#main_content").append(" ");
         }
     }
@@ -69,7 +70,7 @@ function display_stats() {
     $("#sub_heading").html("<h3>Done!</h3>");
 
     for (i = 0; i < questions.length; i++){
-        var result = $("input[name=   'question_" + i + "']:checked").val();
+        var result = $("input[name='question_" + i + "']:checked").val();
         if (result === questions[i].correct)
             correct_answers++;
         else if (result === undefined)
@@ -113,6 +114,3 @@ $("#done_button").on("click", "#end_game", function () {
 });
 
 
-// id: "ans_" + j,
-// var label = $("<label for='ans_" + j + "'>" + questions[i].answers[j] + "</label>")           
-// var label = $("<label>" + questions[i].answers[j] + "</label>")   
