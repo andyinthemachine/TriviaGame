@@ -11,7 +11,7 @@ var questions = [
     {
         question: "What is the fastest event?",
         correct: "downhill",
-        answers:  ["downhill", "super-g", "giant slalom", "slalom"]
+        answers: ["downhill", "super-g", "giant slalom", "slalom"]
     },
     {
         question: "Where is the Hannenkam?",
@@ -25,16 +25,51 @@ var questions = [
     }
 ];
 
-function display_questions() {
-    questions.forEach(function(item){
-        $("#main_content").append("<p>" + item.question + "</p>");
 
-    })
+function display_questions() {
+
+    for (i = 0; i < questions.length; i++) {
+        $("#main_content").append("<p>" + questions[i].question + "<br></p>");
+        for (j = 0; j < questions[i].answers.length; j++) {
+            var $radio_button = $("<input type = 'radio' />");
+            $radio_button.attr("name", "question_" + i);
+            $radio_button.attr("id", "ans_" + j);
+            $radio_button.attr("value", questions[i].answers[j]);
+
+            // $("'#ans_' + j label").text('default');
+
+            $("#main_content").append($radio_button);
+            $("#main_content").append(questions[i].answers[j]);
+
+            // $('#'+ countrySelected ).attr('checked', true);
+
+            // $("#main_content").append("<label for = 'ans_0'>test</label>")
+
+        }
+    }
 }
+
+
+// $("input[type='radio'][name='rate']:checked").val();
+
 
 function display_stats() {
     $("#sub_heading").html("<h3>Done!</h3>");
-    $("#main_content").html("<h3>Correct answers: " + correct_answers + "<br></h3>");
+    // for (i = 0; i < questions.length; i++){
+    //     var result = $("input[name='question_1']:checked").val();
+
+
+    // }
+    var temp = "question_1";
+    var result = $("[name=temp]:checked").val();
+    // var result = $("input[name='question_1']:checked").val();
+
+
+    $("#main_content").html("<h3>button checked =  " + result + "<br></h3>");
+    // $("#main_content").append("<h3>Correct answers: " + correct_answers + "<br></h3>");
+
+
+    // $("#main_content").html("<h3>Correct answers: " + correct_answers + "<br></h3>");
     $("#main_content").append("<h3>Incorrect answers: " + incorrect_answers + "<br></h3>");
     $("#main_content").append("<h3>Unanswered: " + unanswered + "</h3>");
     $("#done_button").empty();
