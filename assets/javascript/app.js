@@ -1,6 +1,6 @@
 
 var interval_id;
-var seconds_count = 30;
+var seconds_count = 45;
 var correct_answers = 0;
 var incorrect_answers = 0;
 var unanswered = 0;
@@ -22,6 +22,26 @@ var questions = [
         question: "What is the name of the championship trophy?",
         correct: "Crystal Globe",
         answers: ["Peaks Honor", "Snow Cup", "Stenmark Prize", "Crystal Globe"]
+    },
+    {
+        question: "What country has a team but does not host an event?",
+        correct: "England",
+        answers: ["Germany", "Slovakia", "England", "Finland"]
+    },
+    {
+        question: "Who has the most trophies?",
+        correct: "Ingemar Stenmark",
+        answers: ["Ingemar Stenmark", "Alberto Tomba", "Lindsey Vonn", "Bode Miller"]
+    },
+    {
+        question: "Where is an event hosted in the USA?",
+        correct: "Beaver Creek",
+        answers: ["Winter Park", "Steamboat", "Taos", "Beaver Creek"]
+    },
+    {
+        question: "What event requires a face guard?",
+        correct: "slalom",
+        answers: ["slalom", "giant slalom", "super-g", "downhill"]
     }
 ];
 
@@ -32,41 +52,24 @@ function display_questions() {
         $("#main_content").append("<p>" + questions[i].question + "<br></p>");
         for (j = 0; j < questions[i].answers.length; j++) {
             var $radio_button = $("<input type = 'radio' />");
-            // add object here
-            $radio_button.attr("name", "question_" + i);
-            $radio_button.attr("id", "ans_" + j);
-            $radio_button.attr("value", questions[i].answers[j]);
-
-            // $("'#ans_' + j label").text('default');
-
-            // var input = $(‘<input class=“form-check-input” type=“ radio” name=“triviaRadios” id=“radiobutton” value=“’ + [j] + ‘>‘);
-            // var input = $(‘<input class=“form-check-input” type=“ radio” name=“triviaRadios” id=“radiobutton” value=“’ ‘>‘);
-
-            // var label = $(‘<label class=“form-check-label” for=“exampleRadios2"></label>’);
-            // var label = $(‘<label class=“form-check-label” for=“exampleRadios2"></label>’);
-            // label.text(Answers[j]);
-            // input.html(label);
-
+            $radio_button.attr({
+                    name: "question_" + i,
+                    value: questions[i].answers[j]
+            });
             $("#main_content").append($radio_button);
-            $("#main_content").append(questions[i].answers[j]);
-
-            // $('#'+ countrySelected ).attr('checked', true);
-
-            // $("#main_content").append("<label for = 'ans_0'>test</label>")
-
+            $("#main_content").append("<label>" + questions[i].answers[j] + "</label>");
+            $("#main_content").append(" ");
         }
     }
 }
 
-
-// $("input[type='radio'][name='rate']:checked").val();
 
 
 function display_stats() {
     $("#sub_heading").html("<h3>Done!</h3>");
 
     for (i = 0; i < questions.length; i++){
-        var result = $("input[name='question_" + i + "']:checked").val();
+        var result = $("input[name=   'question_" + i + "']:checked").val();
         if (result === questions[i].correct)
             correct_answers++;
         else if (result === undefined)
@@ -110,41 +113,6 @@ $("#done_button").on("click", "#end_game", function () {
 });
 
 
-
-// $("#sub_heading").empty();
-
-// var letterBtn = $("<button>");
-
-//         // 3. Then give each "letterBtn" the following classes: "letter-button" "letter" "letter-button-color".
-//         letterBtn.addClass("letter-button letter letter-button-color");
-
-//         // 4. Then give each "letterBtn" a data-attribute called "data-letter".
-//         letterBtn.attr("data-letter", letters[i]);
-
-//         // 5. Then give each "letterBtns" a text equal to "letters[i]".
-//         letterBtn.text(letters[i]);
-
-//         // 6. Finally, append each "letterBtn" to the "#buttons" div (provided).
-//         $("#buttons").append(letterBtn);
-
-
-// function reset_crystals() {
-//     $("#crystals").empty();
-//     for (var i = 0; i < number_options.length; i++) {
-//       var $image = $("<img>");
-//       $image.addClass("crystal-image");
-//       $image.attr("src", "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg");
-//       $image.attr("data-crystalvalue", number_options[i]);
-//       $("#crystals").append($image);
-//     }
-//   }
-
-
-
-  // on-click event for button clicks of crystal images
-//   $("button").on("click", function () {
-//       alert("start pressed");
-//   });
-
-    // var crystal_value = $(this).attr("data-crystalvalue");
-    // crystal_value = parseInt(crystal_value)
+// id: "ans_" + j,
+// var label = $("<label for='ans_" + j + "'>" + questions[i].answers[j] + "</label>")           
+// var label = $("<label>" + questions[i].answers[j] + "</label>")   
