@@ -1,6 +1,6 @@
 
 var interval_id;
-var seconds_count = 10;
+var seconds_count = 30;
 var correct_answers = 0;
 var incorrect_answers = 0;
 var unanswered = 0;
@@ -32,11 +32,20 @@ function display_questions() {
         $("#main_content").append("<p>" + questions[i].question + "<br></p>");
         for (j = 0; j < questions[i].answers.length; j++) {
             var $radio_button = $("<input type = 'radio' />");
+            // add object here
             $radio_button.attr("name", "question_" + i);
             $radio_button.attr("id", "ans_" + j);
             $radio_button.attr("value", questions[i].answers[j]);
 
             // $("'#ans_' + j label").text('default');
+
+            // var input = $(‘<input class=“form-check-input” type=“ radio” name=“triviaRadios” id=“radiobutton” value=“’ + [j] + ‘>‘);
+            // var input = $(‘<input class=“form-check-input” type=“ radio” name=“triviaRadios” id=“radiobutton” value=“’ ‘>‘);
+
+            // var label = $(‘<label class=“form-check-label” for=“exampleRadios2"></label>’);
+            // var label = $(‘<label class=“form-check-label” for=“exampleRadios2"></label>’);
+            // label.text(Answers[j]);
+            // input.html(label);
 
             $("#main_content").append($radio_button);
             $("#main_content").append(questions[i].answers[j]);
@@ -55,21 +64,18 @@ function display_questions() {
 
 function display_stats() {
     $("#sub_heading").html("<h3>Done!</h3>");
-    // for (i = 0; i < questions.length; i++){
-    //     var result = $("input[name='question_1']:checked").val();
 
-
-    // }
-    var temp = "question_1";
-    var result = $("[name=temp]:checked").val();
-    // var result = $("input[name='question_1']:checked").val();
-
-
-    $("#main_content").html("<h3>button checked =  " + result + "<br></h3>");
-    // $("#main_content").append("<h3>Correct answers: " + correct_answers + "<br></h3>");
-
-
-    // $("#main_content").html("<h3>Correct answers: " + correct_answers + "<br></h3>");
+    for (i = 0; i < questions.length; i++){
+        var result = $("input[name='question_" + i + "']:checked").val();
+        if (result === questions[i].correct)
+            correct_answers++;
+        else if (result === undefined)
+            unanswered++;
+        else
+            incorrect_answers++;
+    }
+    
+    $("#main_content").html("<h3>Correct answers: " + correct_answers + "<br></h3>");
     $("#main_content").append("<h3>Incorrect answers: " + incorrect_answers + "<br></h3>");
     $("#main_content").append("<h3>Unanswered: " + unanswered + "</h3>");
     $("#done_button").empty();
